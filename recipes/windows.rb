@@ -65,6 +65,12 @@ if node['java'].attribute?("java_home")
   windows_path "#{java_home_win}\\bin" do
     action :add
   end
+
+  # jdk 1.6 installer fails unless it's a fresh install...
+  directory "#{java_home_win}" do
+    recursive true
+    action :delete
+  end
 end
 
 
